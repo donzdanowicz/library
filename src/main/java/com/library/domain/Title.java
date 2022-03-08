@@ -11,10 +11,15 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
 @Entity
 @Table(name="TITLES")
 public class Title {
+
+    public Title(String title, String author, int publicationYear) {
+        this.title = title;
+        this.author = author;
+        this.publicationYear = publicationYear;
+    }
 
     @Id
     @NotNull
@@ -40,5 +45,5 @@ public class Title {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    private final List<Copy> copies = new ArrayList<>();
+    private List<Copy> copies;
 }

@@ -10,10 +10,15 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
 @Entity
 @Table(name="READERS")
 public class Reader {
+
+    public Reader(String firstName, String lastName, LocalDateTime createDate) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.createDate = createDate;
+    }
 
     @Id
     @NotNull
@@ -33,8 +38,8 @@ public class Reader {
     @Column(name="CREATE_DATE")
     private LocalDateTime createDate;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    /*@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="RENT_ID")
-    private Rent rent;
+    private Rent rent;*/
 
 }

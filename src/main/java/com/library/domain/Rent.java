@@ -12,10 +12,15 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
 @Entity
 @Table(name="RENTS")
 public class Rent {
+
+    public Rent(LocalDateTime rentDate, LocalDateTime returnDate) {
+        this.rentDate = rentDate;
+        this.returnDate = returnDate;
+    }
+
     @Id
     @GeneratedValue
     @NotNull
@@ -26,17 +31,12 @@ public class Rent {
     @Column(name="RENT_DATE")
     private LocalDateTime rentDate;
 
-    @NotNull
     @Column(name="RETURN_DATE")
     private LocalDateTime returnDate;
 
-    @OneToMany(
-            targetEntity = Copy.class,
-            mappedBy = "rent",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
-    private final List<Copy> copies = new ArrayList<>();
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name="COPY_ID")
+    private Copy copy;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="READER_ID")
