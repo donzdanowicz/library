@@ -8,7 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @NamedNativeQuery(
-        name = "Copy.howManyCopiesAvailableToRent",
+        name = "Copy.howManyCopiesOfGivenTitleAvailableToRent",
         query = "SELECT COUNT(*) FROM COPIES" +
                 " WHERE STATUS = \"AT_LIBRARY\" AND TITLE_ID = :TITLE_ID",
         resultClass = Copy.class

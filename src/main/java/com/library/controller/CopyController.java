@@ -57,8 +57,8 @@ public class CopyController {
         return copyMapper.mapToCopyDto(copyDbService.updateStatus(id, status));
     }
 
-    /*@GetMapping(value = "howManyCopiesOfGivenTitleAvailableToRent/{id}")
-    public Integer howManyCopiesOfGivenTitleAvailableToRent(@PathVariable Long id) {
-        return copyDbService.howManyCopiesOfGivenTitleAvailableToRent(id);
-    }*/
+    @GetMapping(value = "howManyCopiesOfGivenTitleAvailableToRent/{titleId}")
+    public Integer howManyCopiesOfGivenTitleAvailableToRent(@PathVariable Long titleId) {
+        return copyDbService.howManyCopiesOfGivenTitleAvailableToRent(titleId);
+    }
 }

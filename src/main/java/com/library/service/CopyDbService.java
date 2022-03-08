@@ -37,9 +37,9 @@ public class CopyDbService {
        return copy;
     }
 
-    /*public Integer howManyCopiesOfGivenTitleAvailableToRent(Long titleId) {
+    public Integer howManyCopiesOfGivenTitleAvailableToRent(Long titleId) {
         return copyRepository.howManyCopiesOfGivenTitleAvailableToRent(titleId);
-    }*/
+    }
 
 
 

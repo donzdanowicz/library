@@ -24,7 +24,8 @@ public interface CopyRepository extends CrudRepository<Copy, Long> {
     @Override
     Optional<Copy> findById(Long id);
 
-    /*@Query(nativeQuery = true)
-    Integer howManyCopiesOfGivenTitleAvailableToRent(@Param("TITLE_ID") Long titleId);*/
+    @Query(nativeQuery = true)
+    Integer howManyCopiesOfGivenTitleAvailableToRent(@Param("TITLE_ID") Long titleId);
+
 
 }
