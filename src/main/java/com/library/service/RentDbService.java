@@ -1,6 +1,7 @@
 package com.library.service;
 
 import com.library.domain.Rent;
+import com.library.domain.Status;
 import com.library.exception.RentNotFoundException;
 import com.library.repository.RentRepository;
 import lombok.RequiredArgsConstructor;
@@ -32,7 +33,7 @@ public class RentDbService {
 
     public Rent returnBook(final Long id) throws RentNotFoundException {
         Rent rent = rentRepository.findById(id).orElseThrow(RentNotFoundException::new);
-        rent.getCopy().setStatus("AT_LIBRARY");
+        rent.getCopy().setStatus(Status.AT_LIBRARY);
         rent.setReturnDate(LocalDateTime.now());
 
         return rent;

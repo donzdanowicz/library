@@ -9,8 +9,8 @@ import lombok.*;
 @Builder
 public class CopyDto {
     private Long id;
-    private String status;
-    //private Status status;
+    //private String status;
+    private Status status;
     private Long titleId;
     //private Long rentId;
 }

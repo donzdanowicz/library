@@ -1,6 +1,7 @@
 package com.library.repository;
 
 import com.library.domain.Copy;
+import com.library.domain.Status;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -27,5 +28,5 @@ public interface CopyRepository extends CrudRepository<Copy, Long> {
     @Query(nativeQuery = true)
     Integer howManyCopiesOfGivenTitleAvailableToRent(@Param("TITLE_ID") Long titleId);
 
-
+    Integer countAllByStatusAndTitleId(Status status, Long titleId);
 }

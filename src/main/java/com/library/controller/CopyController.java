@@ -2,6 +2,7 @@ package com.library.controller;
 
 import com.library.domain.Copy;
 import com.library.domain.CopyDto;
+import com.library.domain.Status;
 import com.library.exception.CopyNotFoundException;
 import com.library.exception.RentNotFoundException;
 import com.library.exception.TitleNotFoundException;
@@ -53,12 +54,18 @@ public class CopyController {
     }
 
     @PutMapping(value = "updateCopyStatus/{id}")
-    public CopyDto updateCopyStatus(@PathVariable Long id, @RequestParam String status) throws CopyNotFoundException {
+    public CopyDto updateCopyStatus(@PathVariable Long id, @RequestParam Status status) throws CopyNotFoundException {
         return copyMapper.mapToCopyDto(copyDbService.updateStatus(id, status));
     }
 
     @GetMapping(value = "howManyCopiesOfGivenTitleAvailableToRent/{titleId}")
     public Integer howManyCopiesOfGivenTitleAvailableToRent(@PathVariable Long titleId) {
         return copyDbService.howManyCopiesOfGivenTitleAvailableToRent(titleId);
+    }
+
+
+    @GetMapping(value = "countAllByStatusAndTitleId/{titleId}")
+    public Integer countAllByStatusAndTitleId(@PathVariable Long titleId) {
+        return copyDbService.countAllByStatusAndTitleId(titleId);
     }
 }

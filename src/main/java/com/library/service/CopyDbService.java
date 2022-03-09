@@ -1,12 +1,15 @@
 package com.library.service;
 
 import com.library.domain.Copy;
+import com.library.domain.Status;
 import com.library.exception.CopyNotFoundException;
 import com.library.repository.CopyRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
+
+import static com.library.domain.Status.AT_LIBRARY;
 
 @RequiredArgsConstructor
 @Service
@@ -29,7 +32,7 @@ public class CopyDbService {
         copyRepository.deleteById(id);
     }
 
-    public Copy updateStatus(final Long id, final String status) throws CopyNotFoundException {
+    public Copy updateStatus(final Long id, final Status status) throws CopyNotFoundException {
         Copy copy = copyRepository.findById(id).orElseThrow(CopyNotFoundException::new);
 
        copy.setStatus(status);
@@ -39,6 +42,10 @@ public class CopyDbService {
 
     public Integer howManyCopiesOfGivenTitleAvailableToRent(Long titleId) {
         return copyRepository.howManyCopiesOfGivenTitleAvailableToRent(titleId);
+    }
+
+    public Integer countAllByStatusAndTitleId(Long titleId) {
+        return copyRepository.countAllByStatusAndTitleId(AT_LIBRARY, titleId);
     }
 
 

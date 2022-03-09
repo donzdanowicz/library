@@ -1,9 +1,6 @@
 package com.library.repository;
 
-import com.library.domain.Copy;
-import com.library.domain.Reader;
-import com.library.domain.Rent;
-import com.library.domain.Title;
+import com.library.domain.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -29,7 +26,7 @@ public class LibraryRepositoriesTestSuite {
     @Test
     void testCopyRepository() {
         //Given
-        Copy copy = new Copy("AT_LIBRARY");
+        Copy copy = new Copy(Status.AT_LIBRARY);
 
         //When
         copyRepository.save(copy);

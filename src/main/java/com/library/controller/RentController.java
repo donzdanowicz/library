@@ -3,6 +3,7 @@ package com.library.controller;
 import com.library.domain.Copy;
 import com.library.domain.Rent;
 import com.library.domain.RentDto;
+import com.library.domain.Status;
 import com.library.exception.CopyNotFoundException;
 import com.library.exception.ReaderNotFoundException;
 import com.library.exception.RentNotFoundException;
@@ -49,9 +50,9 @@ public class RentController {
     public void rentBook(@RequestBody RentDto rentDto) throws ReaderNotFoundException, CopyNotFoundException {
         Rent rent = rentMapper.mapToRent(rentDto);
         Copy copy = rent.getCopy();
-        copyDbService.updateStatus(copy.getId(), "RENTED");
-        copyDbService.saveCopy(copy);
-        rentDbService.saveRent(rent);
+        copyDbService.updateStatus(copy.getId(), Status.RENTED);
+        //copyDbService.saveCopy(copy);
+        //rentDbService.saveRent(rent);
     }
 
     @PutMapping(value = "updateRent")
@@ -66,7 +67,7 @@ public class RentController {
         Rent rent = rentDbService.getRent(id).orElseThrow(RentNotFoundException::new);
         rent.setReturnDate(LocalDateTime.now());
         Copy copy = rent.getCopy();
-        copyDbService.updateStatus(copy.getId(), "AT_LIBRARY");
+        copyDbService.updateStatus(copy.getId(), Status.AT_LIBRARY);
         copyDbService.saveCopy(copy);
         rentDbService.saveRent(rent);
 

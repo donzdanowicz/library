@@ -1,17 +1,13 @@
 package com.library.domain;
 
 import lombok.*;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @NamedNativeQuery(
         name = "Copy.howManyCopiesOfGivenTitleAvailableToRent",
         query = "SELECT COUNT(*) FROM COPIES" +
-                " WHERE STATUS = \"AT_LIBRARY\" AND TITLE_ID = :TITLE_ID",
-        resultClass = Copy.class
+                " WHERE STATUS = \"AT_LIBRARY\" AND TITLE_ID = :TITLE_ID"
 )
 
 @Data
@@ -22,11 +18,7 @@ import javax.validation.constraints.NotNull;
 @Table(name="COPIES")
 public class Copy {
 
-    /*public Copy(Status status) {
-        this.status = status;
-    }*/
-
-    public Copy(String status) {
+    public Copy(Status status) {
         this.status = status;
     }
 
@@ -37,9 +29,9 @@ public class Copy {
     private Long id;
 
     @NotNull
+    @Enumerated(EnumType.STRING)
     @Column(name="STATUS")
-    //private Status status;
-    private String status;
+    private Status status;
 
     @ManyToOne
     @JoinColumn(name="TITLE_ID")
